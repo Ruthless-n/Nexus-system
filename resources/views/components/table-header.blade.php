@@ -1,0 +1,1 @@
+<th class="border px-2 py-1 bg-[#3C004A] text-white">{{ $slot }}</th>

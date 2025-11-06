@@ -5,67 +5,74 @@
         </div>
     @endif
     
-    <form wire:submit.prevent="store" class="mb-4 space-y-4">
-        <div class="grid grid-cols-2 gap-4">
-            <div>
-                <input type="text" wire:model="nome" placeholder="Nome do Colaborador" class="border p-2 w-full">
-                @error('nome') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
-            </div>
-            <div>
-                <input type="email" wire:model="email" placeholder="Email" class="border p-2 w-full">
-                @error('email') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
-            </div>
-            <div>
-                <input type="text" wire:model="cpf" placeholder="CPF (000.000.000-00)" class="border p-2 w-full" maxlength="14">
-                @error('cpf') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
-            </div>
-            <div>
-                <select wire:model="unidade_id" class="border p-2 w-full">
-                    <option value="">Selecione uma Unidade</option>
+    <form wire:submit.prevent="store" class="mb-4">
+        <div class="max-w-2xl mx-auto p-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <x-form-input
+                    label="Nome do Colaborador"
+                    name="nome"
+                    placeholder="Nome do Colaborador"
+                />
+
+                <x-form-input
+                    label="Email"
+                    name="email"
+                    type="email"
+                    placeholder="Email"
+                />
+
+                <x-form-input
+                    label="CPF"
+                    name="cpf"
+                    placeholder="000.000.000-00"
+                    maxlength="14"
+                />
+
+                <x-form-select
+                    label="Unidade"
+                    name="unidade_id"
+                >
                     @foreach($unidades as $unidade)
                         <option value="{{ $unidade->id }}">{{ $unidade->nome_fantasia }}</option>
                     @endforeach
-                </select>
-                @error('unidade_id') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+                </x-form-select>
             </div>
-        </div>
-        <div>
-            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">
-                {{ $colaboradorId ? 'Atualizar' : 'Adicionar' }}
-            </button>
-            @if($colaboradorId)
-                <button type="button" wire:click="cancel" class="bg-gray-500 text-white px-4 py-2 rounded ml-2">
-                    Cancelar
-                </button>
-            @endif
+
+            <div class="mt-4 flex justify-center gap-2">
+                <x-primary-button class="w-full sm:w-auto">
+                    {{ $colaboradorId ? 'Atualizar' : 'Adicionar' }}
+                </x-primary-button>
+
+                @if($colaboradorId)
+                    <button type="button" wire:click="cancel" class="bg-gray-500 text-white px-4 py-2 rounded">
+                        Cancelar
+                    </button>
+                @endif
+            </div>
         </div>
     </form>
 
-    <table class="table-auto w-full border">
-        <thead>
+    <x-table>
+        <x-slot name="header">
+            <x-table-header>ID</x-table-header>
+            <x-table-header>Nome</x-table-header>
+            <x-table-header>Email</x-table-header>
+            <x-table-header>CPF</x-table-header>
+            <x-table-header>Unidade</x-table-header>
+            <x-table-header>Ações</x-table-header>
+        </x-slot>
+        @foreach($colaboradores as $colaborador)
             <tr>
-                <th class="border px-2 py-1">ID</th>
-                <th class="border px-2 py-1">Nome</th>
-                <th class="border px-2 py-1">Email</th>
-                <th class="border px-2 py-1">CPF</th>
-                <th class="border px-2 py-1">Unidade</th>
-                <th class="border px-2 py-1">Ações</th>
+                <x-table-cell>{{ $colaborador->id }}</x-table-cell>
+                <x-table-cell>{{ $colaborador->nome }}</x-table-cell>
+                <x-table-cell>{{ $colaborador->email }}</x-table-cell>
+                <x-table-cell>{{ $colaborador->cpf }}</x-table-cell>
+                <x-table-cell>{{ $colaborador->unidade->nome_fantasia ?? 'N/A' }}</x-table-cell>
+                <x-table-cell>
+                    <button wire:click="edit({{ $colaborador->id }})" class="bg-yellow-500 text-white px-2 py-1 rounded">Editar</button>
+                    <button wire:click="delete({{ $colaborador->id }})" class="bg-red-500 text-white px-2 py-1 rounded">Excluir</button>
+                </x-table-cell>
             </tr>
-        </thead>
-        <tbody>
-            @foreach($colaboradores as $colaborador)
-                <tr>
-                    <td class="border px-2 py-1">{{ $colaborador->id }}</td>
-                    <td class="border px-2 py-1">{{ $colaborador->nome }}</td>
-                    <td class="border px-2 py-1">{{ $colaborador->email }}</td>
-                    <td class="border px-2 py-1">{{ $colaborador->cpf }}</td>
-                    <td class="border px-2 py-1">{{ $colaborador->unidade->nome_fantasia ?? 'N/A' }}</td>
-                    <td class="border px-2 py-1">
-                        <button wire:click="edit({{ $colaborador->id }})" class="bg-yellow-500 text-white px-2 py-1 rounded">Editar</button>
-                        <button wire:click="delete({{ $colaborador->id }})" class="bg-red-500 text-white px-2 py-1 rounded">Excluir</button>
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
+        @endforeach
+    </x-table>
 </div>

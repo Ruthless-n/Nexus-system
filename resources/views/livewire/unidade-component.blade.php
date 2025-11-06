@@ -5,67 +5,73 @@
         </div>
     @endif
     
-    <form wire:submit.prevent="store" class="mb-4 space-y-4">
-        <div class="grid grid-cols-2 gap-4">
-            <div>
-                <input type="text" wire:model="nome_fantasia" placeholder="Nome Fantasia" class="border p-2 w-full">
-                @error('nome_fantasia') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
-            </div>
-            <div>
-                <input type="text" wire:model="razao_social" placeholder="Razão Social" class="border p-2 w-full">
-                @error('razao_social') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
-            </div>
-            <div>
-                <input type="text" wire:model="cnpj" placeholder="CNPJ (00.000.000/0000-00)" class="border p-2 w-full" maxlength="18">
-                @error('cnpj') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
-            </div>
-            <div>
-                <select wire:model="bandeira_id" class="border p-2 w-full">
-                    <option value="">Selecione uma Bandeira</option>
+    <form wire:submit.prevent="store" class="mb-4">
+        <div class="max-w-2xl mx-auto p-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <x-form-input
+                    label="Nome Fantasia"
+                    name="nome_fantasia"
+                    placeholder="Nome Fantasia"
+                />
+
+                <x-form-input
+                    label="Razão Social"
+                    name="razao_social"
+                    placeholder="Razão Social"
+                />
+
+                <x-form-input
+                    label="CNPJ"
+                    name="cnpj"
+                    placeholder="00.000.000/0000-00"
+                    maxlength="18"
+                />
+
+                <x-form-select
+                    label="Bandeira"
+                    name="bandeira_id"
+                >
                     @foreach($bandeiras as $bandeira)
                         <option value="{{ $bandeira->id }}">{{ $bandeira->nome }}</option>
                     @endforeach
-                </select>
-                @error('bandeira_id') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+                </x-form-select>
             </div>
-        </div>
-        <div>
-            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">
-                {{ $unidadeId ? 'Atualizar' : 'Adicionar' }}
-            </button>
-            @if($unidadeId)
-                <button type="button" wire:click="cancel" class="bg-gray-500 text-white px-4 py-2 rounded ml-2">
-                    Cancelar
-                </button>
-            @endif
+
+            <div class="mt-4 flex justify-center gap-2">
+                <x-primary-button class="w-full sm:w-auto">
+                    {{ $unidadeId ? 'Atualizar' : 'Adicionar' }}
+                </x-primary-button>
+
+                @if($unidadeId)
+                    <button type="button" wire:click="cancel" class="bg-gray-500 text-white px-4 py-2 rounded">
+                        Cancelar
+                    </button>
+                @endif
+            </div>
         </div>
     </form>
 
-    <table class="table-auto w-full border">
-        <thead>
+    <x-table>
+        <x-slot name="header">
+            <x-table-header>ID</x-table-header>
+            <x-table-header>Nome Fantasia</x-table-header>
+            <x-table-header>Razão Social</x-table-header>
+            <x-table-header>CNPJ</x-table-header>
+            <x-table-header>Bandeira</x-table-header>
+            <x-table-header>Ações</x-table-header>
+        </x-slot>
+        @foreach($unidades as $unidade)
             <tr>
-                <th class="border px-2 py-1">ID</th>
-                <th class="border px-2 py-1">Nome Fantasia</th>
-                <th class="border px-2 py-1">Razão Social</th>
-                <th class="border px-2 py-1">CNPJ</th>
-                <th class="border px-2 py-1">Bandeira</th>
-                <th class="border px-2 py-1">Ações</th>
+                <x-table-cell>{{ $unidade->id }}</x-table-cell>
+                <x-table-cell>{{ $unidade->nome_fantasia }}</x-table-cell>
+                <x-table-cell>{{ $unidade->razao_social }}</x-table-cell>
+                <x-table-cell>{{ $unidade->cnpj }}</x-table-cell>
+                <x-table-cell>{{ $unidade->bandeira->nome ?? 'N/A' }}</x-table-cell>
+                <x-table-cell>
+                    <button wire:click="edit({{ $unidade->id }})" class="bg-yellow-500 text-white px-2 py-1 rounded">Editar</button>
+                    <button wire:click="delete({{ $unidade->id }})" class="bg-red-500 text-white px-2 py-1 rounded">Excluir</button>
+                </x-table-cell>
             </tr>
-        </thead>
-        <tbody>
-            @foreach($unidades as $unidade)
-                <tr>
-                    <td class="border px-2 py-1">{{ $unidade->id }}</td>
-                    <td class="border px-2 py-1">{{ $unidade->nome_fantasia }}</td>
-                    <td class="border px-2 py-1">{{ $unidade->razao_social }}</td>
-                    <td class="border px-2 py-1">{{ $unidade->cnpj }}</td>
-                    <td class="border px-2 py-1">{{ $unidade->bandeira->nome ?? 'N/A' }}</td>
-                    <td class="border px-2 py-1">
-                        <button wire:click="edit({{ $unidade->id }})" class="bg-yellow-500 text-white px-2 py-1 rounded">Editar</button>
-                        <button wire:click="delete({{ $unidade->id }})" class="bg-red-500 text-white px-2 py-1 rounded">Excluir</button>
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
+        @endforeach
+    </x-table>
 </div>
