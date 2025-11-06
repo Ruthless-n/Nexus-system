@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Unidade extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['nome_fantasia', 'razao_social', 'cnpj', 'bandeira_id', 'created_by', 'updated_by', 'deleted_by'];
+
+    public function bandeira()
+    {
+        return $this->belongsTo(Bandeira::class);
+    }
+
+    public function colaboradores()
+    {
+        return $this->hasMany(Colaborador::class);
+    }
 }

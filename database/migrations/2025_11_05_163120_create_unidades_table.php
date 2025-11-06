@@ -17,7 +17,11 @@ return new class extends Migration
             $table->string('razao_social');
             $table->string('cnpj', 18)->unique();
             $table->foreignId('bandeira_id')->constrained('bandeiras')->onDelete('cascade');
+            $table->unsignedBigInteger('created_by')->nullable();
+            $table->unsignedBigInteger('updated_by')->nullable();
+            $table->unsignedBigInteger('deleted_by')->nullable();
             $table->timestamps();
+
         });
     }
 

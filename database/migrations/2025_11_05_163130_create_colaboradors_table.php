@@ -17,6 +17,9 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('cpf', 14)->unique();
             $table->foreignId('unidade_id')->constrained('unidades')->onDelete('cascade');
+            $table->unsignedBigInteger('created_by')->nullable();
+            $table->unsignedBigInteger('updated_by')->nullable();
+            $table->unsignedBigInteger('deleted_by')->nullable();
             $table->timestamps();
         });
     }
