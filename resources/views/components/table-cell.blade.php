@@ -1,1 +1,1 @@
-<td class="border px-2 py-1">{{ $slot }}</td>
+<td class="border border-[#D1D1D1] px-2 py-1">{{ $slot }}</td>

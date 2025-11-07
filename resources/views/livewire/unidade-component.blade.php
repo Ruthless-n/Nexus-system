@@ -68,8 +68,8 @@
                 <x-table-cell>{{ $unidade->cnpj }}</x-table-cell>
                 <x-table-cell>{{ $unidade->bandeira->nome ?? 'N/A' }}</x-table-cell>
                 <x-table-cell>
-                    <button wire:click="edit({{ $unidade->id }})" class="bg-yellow-500 text-white px-2 py-1 rounded">Editar</button>
-                    <button wire:click="delete({{ $unidade->id }})" class="bg-red-500 text-white px-2 py-1 rounded">Excluir</button>
+                    <x-edit-button :id="$unidade->id" class="mr-1" />
+                    <x-delete-button :id="$unidade->id" />
                 </x-table-cell>
             </tr>
         @endforeach

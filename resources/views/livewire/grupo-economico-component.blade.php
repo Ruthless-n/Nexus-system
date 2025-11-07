@@ -39,8 +39,8 @@
             <tr>
                 <x-table-cell>{{ $grupo->nome }}</x-table-cell>
                 <x-table-cell>
-                    <button wire:click="edit({{ $grupo->id }})" class="bg-yellow-500 text-white px-2 py-1 rounded">Editar</button>
-                    <button wire:click="delete({{ $grupo->id }})" class="bg-red-500 text-white px-2 py-1 rounded">Excluir</button>
+                    <x-edit-button :id="$grupo->id" class="mr-1" />
+                    <x-delete-button :id="$grupo->id" />
                 </x-table-cell>
             </tr>
         @endforeach

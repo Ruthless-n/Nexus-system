@@ -17,7 +17,7 @@
                 <x-form-select
                     label="Grupo Econômico"
                     name="grupo_economico_id"
-                    class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md"
+                    class="border-gray-300 focus:border-[#3C004A]focus:ring-indigo-500 rounded-md"
                 >
                     @foreach($gruposEconomicos as $grupo)
                         <option value="{{ $grupo->id }}">{{ $grupo->nome }}</option>
@@ -52,8 +52,8 @@
                 <x-table-cell>{{ $bandeira->nome }}</x-table-cell>
                 <x-table-cell>{{ $bandeira->grupoEconomico->nome ?? 'N/A' }}</x-table-cell>
                 <x-table-cell>
-                    <button wire:click="edit({{ $bandeira->id }})" class="bg-yellow-500 text-white px-2 py-1 rounded">Editar</button>
-                    <button wire:click="delete({{ $bandeira->id }})" class="bg-red-500 text-white px-2 py-1 rounded">Excluir</button>
+                    <x-edit-button :id="$bandeira->id" class="mr-1" />
+                    <x-delete-button :id="$bandeira->id" />
                 </x-table-cell>
             </tr>
         @endforeach

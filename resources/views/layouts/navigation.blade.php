@@ -1,19 +1,16 @@
-<nav x-data="{ open: false }" class="bg-[#C974E3] border-b shadow-xl/20 z-50">
-    <!-- Primary Navigation Menu -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-20">
+<nav x-data="{ open: false }" class="bg-[#C974E3] border-b shadow-lg shadow-purple-300/50 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-2 sm:px-6 sm:py-4 lg:px-8 lg:py-5">
+        <div class="flex justify-between h-15">
             <div class="flex">
-                <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-white" />
+                    <a href="{{ route('homepage') }}">
+                        <x-application-logo class="block h-2 w-10 fill-current text-white" />
                     </a>
                 </div>
 
-                <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="text-white">
-                        {{ __('Dashboard') }}
+                    <x-nav-link :href="route('homepage')" :active="request()->routeIs('homepage')" class="text-white">
+                        {{ __('Página inicial') }}
                     </x-nav-link>
 
                     <x-nav-link :href="route('grupos-economicos')" :active="request()->routeIs('grupos-economicos')" class="text-white">
@@ -34,7 +31,6 @@
                 </div>
             </div>
 
-            <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
@@ -49,23 +45,19 @@
                     </x-slot>
 
                     <x-slot name="content">
-                        <x-dropdown-link :href="route('profile.edit')">
-                            {{ __('Profile') }}
-                        </x-dropdown-link>
 
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <x-dropdown-link :href="route('logout')"
                                 onclick="event.preventDefault(); this.closest('form').submit();">
-                                {{ __('Log Out') }}
+                                {{ __('Sair') }}
                             </x-dropdown-link>
                         </form>
                     </x-slot>
                 </x-dropdown>
             </div>
 
-            <!-- Hamburger -->
             <div class="-mr-2 flex items-center sm:hidden">
                 <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 transition duration-150 ease-in-out">
                     <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
@@ -77,11 +69,10 @@
         </div>
     </div>
 
-    <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden bg-[#3C004A] border-t border-[#3C004A]">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="text-white">
-                {{ __('Dashboard') }}
+            <x-responsive-nav-link :href="route('homepage')" :active="request()->routeIs('homepage')" class="text-white">
+                {{ __('Página inicial') }}
             </x-responsive-nav-link>
 
             <x-responsive-nav-link :href="route('grupos-economicos')" :active="request()->routeIs('grupos-economicos')" class="text-white">
@@ -99,6 +90,10 @@
             <x-responsive-nav-link :href="route('colaboradores')" :active="request()->routeIs('colaboradores')" class="text-white">
                 {{ __('Colaboradores') }}
             </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('profile.edit')" class="text-white">
+                {{ __('Relatorios') }}
+            </x-responsive-nav-link>
         </div>
 
         <div class="pt-4 pb-1 border-t border-blue-700">
@@ -108,15 +103,11 @@
             </div>
 
             <div class="mt-3 space-y-1">
-                <x-responsive-nav-link :href="route('profile.edit')" class="text-white">
-                    {{ __('Profile') }}
-                </x-responsive-nav-link>
-
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <x-responsive-nav-link :href="route('logout')"
                         onclick="event.preventDefault(); this.closest('form').submit();" class="text-white">
-                        {{ __('Log Out') }}
+                        {{ __('Sair') }}
                     </x-responsive-nav-link>
                 </form>
             </div>

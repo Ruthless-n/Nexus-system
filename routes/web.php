@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
+use App\Exports\ColaboradoresExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,12 +18,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/homepage', function () {
+    return view('homepage');
+})->middleware(['auth', 'verified'])->name('homepage');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/grupos-economicos', function () {
@@ -38,6 +41,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/colaboradores', function () {
         return view('colaboradores');
     })->name('colaboradores');
+
+    Route::get('/relatorios/colaboradores', function () {
+        return view('reports.colaboradores');
+    })->name('reports.colaboradores');
+
+    Route::get('/auditoria', function () {
+        return view('audits.index');
+    })->name('audits.index');
 });
 
 Route::middleware('auth')->group(function () {
@@ -47,3 +58,9 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+// export route (auth protected)
+Route::get('/export/colaboradores', function (Request $request) {
+    $filters = $request->only(['unidade_id','nome']);
+    return Excel::download(new ColaboradoresExport($filters), 'colaboradores.xlsx');
+})->middleware(['auth','verified'])->name('export.colaboradores');

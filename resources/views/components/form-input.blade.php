@@ -7,7 +7,7 @@
         wire:model="{{ $name }}"
         {{ $placeholder ? "placeholder=$placeholder" : '' }}
         {{ $maxlength ? "maxlength=$maxlength" : '' }}
-        {{ $attributes->merge(['class' => 'border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md']) }}
+        {{ $attributes->merge(['class' => 'border-gray-300 focus:border-[#3C004A] focus:ring-indigo-500 rounded-md']) }}
     >
     @error($name)
         <span class="text-red-500 text-sm">{{ $message }}</span>

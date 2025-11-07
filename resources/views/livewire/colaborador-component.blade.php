@@ -4,6 +4,7 @@
             <span class="text-yellow-800">Modo de edição - Editando colaborador ID: {{ $colaboradorId }}</span>
         </div>
     @endif
+
     
     <form wire:submit.prevent="store" class="mb-4">
         <div class="max-w-2xl mx-auto p-4">
@@ -52,6 +53,16 @@
         </div>
     </form>
 
+    <div class="mb-4 flex justify-center">
+    <a href="{{ route('reports.colaboradores') }}" class="bg-[#CC4242] text-white px-4 py-2 rounded inline-flex items-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" />
+            <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd" />
+        </svg>
+        Relatório de Colaboradores
+    </a>
+    </div>
+
     <x-table>
         <x-slot name="header">
             <x-table-header>ID</x-table-header>
@@ -69,8 +80,8 @@
                 <x-table-cell>{{ $colaborador->cpf }}</x-table-cell>
                 <x-table-cell>{{ $colaborador->unidade->nome_fantasia ?? 'N/A' }}</x-table-cell>
                 <x-table-cell>
-                    <button wire:click="edit({{ $colaborador->id }})" class="bg-yellow-500 text-white px-2 py-1 rounded">Editar</button>
-                    <button wire:click="delete({{ $colaborador->id }})" class="bg-red-500 text-white px-2 py-1 rounded">Excluir</button>
+                    <x-edit-button :id="$colaborador->id" class="mr-1" />
+                    <x-delete-button :id="$colaborador->id" />
                 </x-table-cell>
             </tr>
         @endforeach
