@@ -49,7 +49,6 @@ class ColaboradorComponent extends Component
                 $this->reset(['nome', 'email', 'cpf', 'unidade_id', 'colaboradorId']);
             }
         } else {
-            // Se não estiver editando, usar validação de criação
             $this->validate([
                 'nome' => 'required|string|max:255|min:3',
                 'email' => 'required|email|unique:colaboradors,email',
@@ -74,6 +73,7 @@ class ColaboradorComponent extends Component
                 'unidade_id' => $this->unidade_id
             ]);
             $this->reset(['nome', 'email', 'cpf', 'unidade_id']);
+            session()->flash('message', 'Colaborador criado com sucesso!');
         }
         
         $this->colaboradores = Colaborador::with('unidade')->get();
@@ -120,6 +120,7 @@ class ColaboradorComponent extends Component
                     'unidade_id' => $this->unidade_id
                 ]);
                 $this->reset(['nome', 'email', 'cpf', 'unidade_id', 'colaboradorId']);
+                session()->flash('message', 'Colaborador atualizado com sucesso!');
             }
         }
         

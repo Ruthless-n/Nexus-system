@@ -20,16 +20,16 @@ class GrupoEconomicoComponent extends Component
         ]);
         
         if ($this->grupoId) {
-            // Se estiver editando, atualizar
             $grupo = GrupoEconomico::find($this->grupoId);
             if ($grupo) {
                 $grupo->update(['nome' => trim($this->nome)]);
                 $this->reset(['nome', 'grupoId']);
+                session()->flash('message', 'Grupo econômico atualizado com sucesso!');
             }
         } else {
-            // Se não estiver editando, criar novo
             GrupoEconomico::create(['nome' => trim($this->nome)]);
             $this->reset('nome');
+            session()->flash('message', 'Grupo econômico criado com sucesso!');
         }
         
         $this->grupos = GrupoEconomico::all();

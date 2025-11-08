@@ -20,7 +20,6 @@ class BandeiraComponent extends Component
     public function store()
     {
         if ($this->bandeiraId) {
-            // Se estiver editando, usar validação de update
             $this->validate([
                 'nome' => 'required|string|max:255|min:3',
                 'grupo_economico_id' => 'required|exists:grupo_economicos,id'
@@ -33,9 +32,9 @@ class BandeiraComponent extends Component
                     'grupo_economico_id' => $this->grupo_economico_id
                 ]);
                 $this->reset(['nome', 'grupo_economico_id', 'bandeiraId']);
+                session()->flash('message', 'Bandeira atualizada com sucesso!');
             }
         } else {
-            // Se não estiver editando, usar validação de criação
             $this->validate([
                 'nome' => 'required|string|max:255|min:3',
                 'grupo_economico_id' => 'required|exists:grupo_economicos,id'
@@ -46,6 +45,7 @@ class BandeiraComponent extends Component
                 'grupo_economico_id' => $this->grupo_economico_id
             ]);
             $this->reset(['nome', 'grupo_economico_id']);
+            session()->flash('message', 'Bandeira criada com sucesso!');
         }
         
         $this->bandeiras = Bandeira::with('grupoEconomico')->get();

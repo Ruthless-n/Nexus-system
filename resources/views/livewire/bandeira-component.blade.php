@@ -1,8 +1,12 @@
 <div>
+    <x-success-message />
+
     @if($bandeiraId)
-        <div class="mb-2 p-2 bg-yellow-100 border border-yellow-400 rounded">
-            <span class="text-yellow-800">Modo de edição - Editando bandeira ID: {{ $bandeiraId }}</span>
-        </div>
+        <x-edit-mode-banner 
+            :id="$bandeiraId" 
+            :nome="$nome"
+            type="bandeira" 
+        />
     @endif
     
     <form wire:submit.prevent="store" class="mb-4">
@@ -17,7 +21,7 @@
                 <x-form-select
                     label="Grupo Econômico"
                     name="grupo_economico_id"
-                    class="border-gray-300 focus:border-[#3C004A]focus:ring-indigo-500 rounded-md"
+                    class="border-gray-300 focus:border-[#3C004A] rounded-md"
                 >
                     @foreach($gruposEconomicos as $grupo)
                         <option value="{{ $grupo->id }}">{{ $grupo->nome }}</option>
@@ -41,14 +45,12 @@
 
     <x-table>
         <x-slot name="header">
-            <x-table-header>ID</x-table-header>
             <x-table-header>Nome</x-table-header>
             <x-table-header>Grupo Econômico</x-table-header>
             <x-table-header>Ações</x-table-header>
         </x-slot>
         @foreach($bandeiras as $bandeira)
             <tr>
-                <x-table-cell>{{ $bandeira->id }}</x-table-cell>
                 <x-table-cell>{{ $bandeira->nome }}</x-table-cell>
                 <x-table-cell>{{ $bandeira->grupoEconomico->nome ?? 'N/A' }}</x-table-cell>
                 <x-table-cell>

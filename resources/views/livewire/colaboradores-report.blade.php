@@ -25,7 +25,6 @@
     <div class="mt-4">
         <x-table>
             <x-slot name="header">
-                <x-table-header>ID</x-table-header>
                 <x-table-header>Nome</x-table-header>
                 <x-table-header>Email</x-table-header>
                 <x-table-header>CPF</x-table-header>
@@ -34,7 +33,6 @@
 
             @foreach($colaboradores as $colaborador)
                 <tr>
-                    <x-table-cell>{{ $colaborador->id }}</x-table-cell>
                     <x-table-cell>{{ $colaborador->nome }}</x-table-cell>
                     <x-table-cell>{{ $colaborador->email }}</x-table-cell>
                     <x-table-cell>{{ $colaborador->cpf }}</x-table-cell>

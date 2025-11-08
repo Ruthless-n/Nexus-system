@@ -48,7 +48,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/auditoria', function () {
         return view('audits.index');
-    })->name('audits.index');
+    })->name('auditoria');
 });
 
 Route::middleware('auth')->group(function () {
@@ -59,7 +59,6 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-// export route (auth protected)
 Route::get('/export/colaboradores', function (Request $request) {
     $filters = $request->only(['unidade_id','nome']);
     return Excel::download(new ColaboradoresExport($filters), 'colaboradores.xlsx');

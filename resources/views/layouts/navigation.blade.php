@@ -32,6 +32,14 @@
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
+                <a href="{{ route('auditoria') }}" class="inline-flex items-center px-3 py-2 mr-3 rounded-md text-white bg-[#2C2C2C] hover:bg-[#242424] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white transition ease-in-out duration-150">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M6 2a1 1 0 000 2h8a1 1 0 100-2H6z" />
+                        <path fill-rule="evenodd" d="M4 5a2 2 0 012-2h8a2 2 0 012 2v9a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd" />
+                    </svg>
+                    Logs
+                </a>
+
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-[#3C004A] hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white transition ease-in-out duration-150">
@@ -46,7 +54,7 @@
 
                     <x-slot name="content">
 
-                        <!-- Authentication -->
+                    
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <x-dropdown-link :href="route('logout')"
@@ -89,6 +97,10 @@
 
             <x-responsive-nav-link :href="route('colaboradores')" :active="request()->routeIs('colaboradores')" class="text-white">
                 {{ __('Colaboradores') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('auditoria')" class="text-white">
+                {{ __('Auditoria') }}
             </x-responsive-nav-link>
 
             <x-responsive-nav-link :href="route('profile.edit')" class="text-white">

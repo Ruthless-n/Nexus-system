@@ -74,6 +74,7 @@ class UnidadeComponent extends Component
                 'bandeira_id' => $this->bandeira_id
             ]);
             $this->reset(['nome_fantasia', 'razao_social', 'cnpj', 'bandeira_id']);
+            session()->flash('message', 'Unidade criada com sucesso!');
         }
         
         $this->unidades = Unidade::with('bandeira')->get();
@@ -120,6 +121,7 @@ class UnidadeComponent extends Component
                     'bandeira_id' => $this->bandeira_id
                 ]);
                 $this->reset(['nome_fantasia', 'razao_social', 'cnpj', 'bandeira_id', 'unidadeId']);
+                session()->flash('message', 'Unidade atualizada com sucesso!');
             }
         }
         

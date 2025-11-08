@@ -40,7 +40,6 @@ class ColaboradoresReport extends Component
 
     public function export()
     {
-        // redirect to export route with filters as query params
         return redirect()->route('export.colaboradores', [
             'unidade_id' => $this->unidade_id,
             'nome' => $this->nome,

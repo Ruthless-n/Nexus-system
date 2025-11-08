@@ -1,8 +1,12 @@
 <div>
+    <x-success-message />
+
     @if($grupoId)
-        <div class="mb-2 p-2 bg-yellow-100 border border-yellow-400 rounded">
-            <span class="text-yellow-800">Modo de edição - Editando o grupo: {{ $nome }}</span>
-        </div>
+        <x-edit-mode-banner 
+            :id="$grupoId" 
+            :nome="$nome"
+            type="grupo econômico" 
+        />
     @endif
     
     <form wire:submit.prevent="store" class="mb-4">

@@ -1,8 +1,12 @@
 <div>
+    <x-success-message />
+
     @if($colaboradorId)
-        <div class="mb-2 p-2 bg-yellow-100 border border-yellow-400 rounded">
-            <span class="text-yellow-800">Modo de edição - Editando colaborador ID: {{ $colaboradorId }}</span>
-        </div>
+        <x-edit-mode-banner 
+            :id="$colaboradorId" 
+            :nome="$nome"
+            type="colaborador" 
+        />
     @endif
 
     
@@ -32,6 +36,7 @@
                 <x-form-select
                     label="Unidade"
                     name="unidade_id"
+                    class="border-gray-300 focus:border-[#3C004A] rounded-md"
                 >
                     @foreach($unidades as $unidade)
                         <option value="{{ $unidade->id }}">{{ $unidade->nome_fantasia }}</option>
@@ -65,7 +70,6 @@
 
     <x-table>
         <x-slot name="header">
-            <x-table-header>ID</x-table-header>
             <x-table-header>Nome</x-table-header>
             <x-table-header>Email</x-table-header>
             <x-table-header>CPF</x-table-header>
@@ -74,7 +78,6 @@
         </x-slot>
         @foreach($colaboradores as $colaborador)
             <tr>
-                <x-table-cell>{{ $colaborador->id }}</x-table-cell>
                 <x-table-cell>{{ $colaborador->nome }}</x-table-cell>
                 <x-table-cell>{{ $colaborador->email }}</x-table-cell>
                 <x-table-cell>{{ $colaborador->cpf }}</x-table-cell>

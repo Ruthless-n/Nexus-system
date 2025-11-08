@@ -1,8 +1,12 @@
 <div>
+    <x-success-message />
+
     @if($unidadeId)
-        <div class="mb-2 p-2 bg-yellow-100 border border-yellow-400 rounded">
-            <span class="text-yellow-800">Modo de edição - Editando unidade ID: {{ $unidadeId }}</span>
-        </div>
+        <x-edit-mode-banner 
+            :id="$unidadeId" 
+            :nome="$nome_fantasia"
+            type="unidade" 
+        />
     @endif
     
     <form wire:submit.prevent="store" class="mb-4">
@@ -30,6 +34,7 @@
                 <x-form-select
                     label="Bandeira"
                     name="bandeira_id"
+                    class="border-gray-300 focus:border-[#3C004A] rounded-md"
                 >
                     @foreach($bandeiras as $bandeira)
                         <option value="{{ $bandeira->id }}">{{ $bandeira->nome }}</option>
@@ -53,7 +58,6 @@
 
     <x-table>
         <x-slot name="header">
-            <x-table-header>ID</x-table-header>
             <x-table-header>Nome Fantasia</x-table-header>
             <x-table-header>Razão Social</x-table-header>
             <x-table-header>CNPJ</x-table-header>
@@ -62,7 +66,6 @@
         </x-slot>
         @foreach($unidades as $unidade)
             <tr>
-                <x-table-cell>{{ $unidade->id }}</x-table-cell>
                 <x-table-cell>{{ $unidade->nome_fantasia }}</x-table-cell>
                 <x-table-cell>{{ $unidade->razao_social }}</x-table-cell>
                 <x-table-cell>{{ $unidade->cnpj }}</x-table-cell>
