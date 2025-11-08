@@ -1,5 +1,5 @@
 # Nexus System
-![Nexus Logo](public/images/login.png)
+![Nexus Logo](public/screenshots/app.png)
 
 Sistema de gerenciamento de grupos econômicos, bandeiras, unidades e colaboradores.
 
@@ -59,7 +59,7 @@ DB_PASSWORD=password
 
 4. No seu terminal Ubuntu, localize o diretório do projeto.
 ```bash
-cd /mnt/[que voce clonou o arquivo]
+cd /mnt/[caminho que voce clonou o arquivo]
 ```
 
 Exemplo: (aqui no caso o projeto está no disco C)
@@ -175,34 +175,29 @@ Nexus-system/
 ## Capturas de tela do sistema
 
 ### Tela de Login
-![Tela de Login](public/images/login.png)
+![Tela de Login](public/screenshots/login.png)
 
 ### Tela de Registro
-![Tela de Registro](public/images/login.png)
+![Tela de Registro](public/screenshots/register.png)
 
 ### Página Inicial
-![Página inicial](public/images/login.png)
+![Página inicial](public/screenshots/homepage.png)
 
 ### Grupos Econômicos
-![Grupos Econômicos](public/images/login.png)
+![Grupos Econômicos](public/screenshots/grupo-economico.png)
 
 ### Bandeiras
-![Bandeiras](public/images/login.png)
+![Bandeiras](public/screenshots/bandeiras.png)
 
 ### Unidades
-![Unidades](public/images/login.png)
+![Unidades](public/screenshots/unidades.png)
 
 ### Colaboradores
-![Colaboradores](public/images/login.png)
+![Colaboradores](public/screenshots/colaboradores.png)
 
 ### Relatório de Colaboradores
-![Relatório de Colaboradores](public/images/login.png)
+![Relatório de Colaboradores](public/screenshots/report.png)
 
 ### Auditoria
-![Auditoria](public/images/login.png)
+![Auditoria](public/screenshots/auditoria-los.png)
 
-## ✨ Autora
-
-Desenvolvido por **Ruth Novais**  
-📧 [ruthcnovais@outlook.com](mailto:ruthcnovais@outlook.com)  
-💻 [LinkedIn](https://www.linkedin.com/in/ruthcnovais) • [GitHub](https://github.com/Ruthless-n)
