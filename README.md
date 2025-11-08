@@ -123,7 +123,7 @@ cd /mnt/c/Nexus-system
 - Unidades: CRUD, associação a bandeiras e exportação
 - Colaboradores: CRUD, associação a unidades e exportação
 - Relatórios exportáveis em Excel/CSV
-- Auditoria (logs) — implementação backend disponível; visualização no front pode ser ativada/desativada pelo time
+- Auditoria (logs) 
 
 ## 🧪 Testes
 
@@ -201,3 +201,9 @@ Nexus-system/
 ### Auditoria
 ![Auditoria](public/screenshots/auditoria-los.png)
 
+
+## ✨ Autora
+
+Desenvolvido por **Ruth Novais**  
+📧 [ruthcnovais@outlook.com](mailto:ruthcnovais@outlook.com)  
+💻 [LinkedIn](https://www.linkedin.com/in/ruthcnovais) • [GitHub](https://github.com/Ruthless-n)
