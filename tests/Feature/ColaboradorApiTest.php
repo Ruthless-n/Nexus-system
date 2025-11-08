@@ -15,7 +15,6 @@ class ColaboradorApiTest extends TestCase
 
     public function test_authenticated_user_can_create_colaborador()
     {
-        // Criando dependências
         $user = User::factory()->create();
 
         $grupo = GrupoEconomico::factory()->create();
