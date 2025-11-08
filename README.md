@@ -59,7 +59,7 @@ DB_PASSWORD=password
 
 4. No seu terminal Ubuntu, localize o diretório do projeto.
 ```bash
-cd /mnt/[que voce clonou o arquivo]
+cd /mnt/[caminho que voce clonou o arquivo]
 ```
 
 Exemplo: (aqui no caso o projeto está no disco C)
